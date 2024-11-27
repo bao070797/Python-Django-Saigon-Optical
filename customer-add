@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+    {% block content %}
+
+    <div class="col-md-6 offset-md-3">
+    <h1>Add Customers</h1>
+    </br>
+
+    <form method="POST" action="{% url 'add-customer' %}" class="bg-secondary-subtle m-auto card">
+        {% csrf_token %}
+        
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    First Name
+                    {{ form.cust_nm_first }}
+                </div>
+                <div class="col">
+                    Last Name
+                    {{ form.cust_nm_last }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    Gender <br>
+                    <input type="radio" id="male" name="cust_gender" value="M"/><label for="male">Male</label>
+                    <input type="radio" id="female" name="cust_gender" value="F"/><label for="female">Female</label>
+                </div>
+                <div class="col">
+                    Date of Birth
+                    {{ form.cust_dob }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    Address
+                    {{ form.cust_addr }}
+                </div>
+                <div class="col">
+                    Suite Address
+                    {{ form.cust_suite_addr }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    Zip Code
+                    {{ form.cust_pstl_cd }}
+                </div>
+                <div class="col">
+                    City
+                    {{ form.cust_city }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    Province
+                    {{ form.cust_prov }}
+                </div>
+                <div class="col">
+                    Country
+                    {{ form.cust_cntry }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    Email
+                    {{ form.cust_email }}
+                </div>
+                <div class="col">
+                    Website
+                    {{ form.cust_website }}
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="row">
+                <div class="col">
+                    Phone Number - Work
+                    {{ form.cust_tel_num_w }}
+                </div>
+                <div class="col">
+                    Phone Number - Mobile
+                    {{ form.cust_tel_num_m }}
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="row">
+                <div class="col">
+                    Customer Rate (1 - 10) <br>
+                    <select class="form-select" aria-label="Default select example" name="cust_rt" id="rate">
+                        <option value= 1>1</option>
+                        <option value= 2>2</option>
+                        <option value= 3>3</option>
+                        <option value= 4>4</option>
+                        <option value= 5>5</option>
+                        <option value= 6>6</option>
+                        <option value= 7>7</option>
+                        <option value= 8>8</option>
+                        <option value= 9>9</option>
+                        <option value= 10>10</option>
+                    </select>
+                </div>
+                <div class="col">
+                    Optometrist<br>
+                    <select class="form-select" aria-label="Default select example" name="cust_optmtrst_id" id="optometrist">
+                        {% for results in results %}
+                        <option value ="{{ results.id }}">{{ results.nm }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    Credit Rate Amount
+                    {{ form.cust_cr_dr_amt }}
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="row">
+                <div class="col">
+                    Insurance Name
+                    {{ form.cust_insurance_nm }}
+                </div>
+                <div class="col">
+                    Insurance Policy
+                    {{ form.cust_insurance_policy }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="col">
+                Notes
+                {{ form.note }}
+            </div>
+
+        </div>
+
+        <br/>
+       <button type="submit" class="btn btn-secondary">Add Record</button>
+
+    </form>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+
+    <script>
+        $('#custAddress').on('keyup', function(data) {
+            if($(this).val().length > 3)
+            {
+                var data = {
+                    input: $(this).val()
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://places.googleapis.com/v1/places:autocomplete',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    headers: {
+                        "X-Goog-Api-Key": "AIzaSyDY92mhXGSUukJCnOqcqObrg8PhV1Opxxo"
+                    },
+                    success: function (resp) {
+                        var places = [];
+                        $(resp.suggestions).each(function(index){
+                            console.log(index);
+
+                            places.push(resp.suggestions[index].placePrediction.text.text);
+                        });
+
+                        $('#custAddress').autocomplete({
+                            source: places
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(xhr)
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- <form class="bg-secondary-subtle m-auto card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                </div>
+              </div>
+        </div>
+    </form> -->
+    
+    </div>
+    {% endblock %}
