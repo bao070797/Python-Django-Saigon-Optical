@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+    {% block content %}
+    
+    <div class="col-md-6 offset-md-3"></div>
+        <h1>Update Prescription</h1>
+
+    <form method="POST" class="bg-secondary-subtle m-auto card">
+        {% csrf_token %}
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    Customer
+                    {{ form.cust_id }}
+                </div>
+                <div class="col">
+                    Optometrist
+                    {{ form.cust_optmtrst_id }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    Start Date
+                    {{ form.strt_dt }}
+                </div>
+                <div class="col">
+                    End Date
+                    {{ form.end_dt }}
+                </div>
+            </div>
+
+            <br>
+            <hr>
+
+            <div class="row">
+                <div class="col">
+                    OD Sphere
+                    {{ form.od_sphere }}
+                </div>
+                <div class="col">
+                    OD Cylinder
+                    {{ form.od_cylinder }}
+                </div>
+                <div class="col">
+                    OD Axis
+                    {{ form.od_axis }}
+                </div>
+                <div class="col">
+                    OD Prism
+                    {{ form.od_prism }}
+                </div>
+                <div class="col">
+                    OD Add
+                    {{ form.od_add }}
+                </div>
+                <div class="col">
+                    OD BiFocal Type
+                    {{ form.od_bif_typ }}
+                </div>
+                <div class="col">
+                    OD Segment Height
+                    {{ form.od_seg_ht }}
+                </div>
+            </div>
+
+            <br>
+            <hr>
+
+            <div class="row">
+                <div class="col">
+                    OS Sphere
+                    {{ form.os_sphere }}
+                </div>
+                <div class="col">
+                    OS Cylinder
+                    {{ form.os_cylinder }}
+                </div>
+                <div class="col">
+                    OS Axis
+                    {{ form.os_axis }}
+                </div>
+                <div class="col">
+                    OS Prism
+                    {{ form.os_prism }}
+                </div>
+                <div class="col">
+                    OS Add
+                    {{ form.os_add }}
+                </div>
+                <div class="col">
+                    OS BiFocal Type
+                    {{ form.os_bif_typ }}
+                </div>
+                <div class="col">
+                    OS Segment Height
+                    {{ form.os_seg_ht }}
+                </div>
+            </div>
+
+        </div>
+        
+        <!--{{ form.as_p }}-->
+
+        <br/>
+       <button type="submit" class="btn btn-secondary">Update Prescription</button>
+
+    </form>
+    
+    </div>
+
+    {% endblock %}
