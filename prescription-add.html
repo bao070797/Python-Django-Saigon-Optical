@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+    {% block content %}
+    {% load static tailwind_tags %}
+    <div class="col-md-6 offset-md-3"></div>
+        <h1 style="font-weight: bold;">Add Prescription</h1>
+    </br>
+
+    <!--<form method="POST" action="{% url 'add-prescription' %}" id="myform" enctype="multipart/form-data">-->
+    <form method="POST" action="{% url 'add-prescription' %}" id="myform" enctype="multipart/form-data" class="bg-secondary-subtle m-auto card">
+        {% csrf_token %}
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    Customer
+                    {{ form.cust_id }}
+                </div>
+                <div class="col">
+                    Optometrist
+                    {{ form.cust_optmtrst_id }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    Start Date
+                    {{ form.strt_dt }}
+                </div>
+                <div class="col">
+                    End Date
+                    {{ form.end_dt }}
+                </div>
+            </div>
+
+            <br>
+            <hr>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    OD Sphere
+                    {{ form.od_sphere }}
+                </div>
+                <div class="col">
+                    OD Cylinder
+                    {{ form.od_cylinder }}
+                </div>
+                <div class="col">
+                    OD Axis
+                    {{ form.od_axis }}
+                </div>
+                <div class="col">
+                    OD Prism
+                    {{ form.od_prism }}
+                </div>
+                <div class="col">
+                    OD Add
+                    {{ form.od_add }}
+                </div>
+                <div class="col">
+                    OD BiFocal Type
+                    {{ form.od_bif_typ }}
+                </div>
+                <div class="col">
+                    OD Segment Height 
+                    {{ form.od_seg_ht }}
+                </div>
+            </div>
+
+            <br>
+            <hr>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    OS Sphere
+                    {{ form.os_sphere }}
+                </div>
+                <div class="col">
+                    OS Cylinder
+                    {{ form.os_cylinder }}
+                </div>
+                <div class="col">
+                    OS Axis
+                    {{ form.os_axis }}
+                </div>
+                <div class="col">
+                    OS Prism
+                    {{ form.os_prism }}
+                </div>
+                <div class="col">
+                    OS Add
+                    {{ form.os_add }}
+                </div>
+                <div class="col">
+                    OS BiFocal Type
+                    {{ form.os_bif_typ }}
+                </div>
+                <div class="col">
+                    OS Segment Height
+                    {{ form.os_seg_ht }}
+                </div>
+            </div>
+
+
+        </div>
+        
+        <!--
+        CUST ID <input type="text" name="cust_id"> 
+        CUSTOMER OPTOMETRIST ID <input type="text" name="cust_optmtrst_id"><br>
+        OD SPHERE <input type="text" name="od_sphere"><br>
+        OD CYLINDER <input type="text" name="od_cylinder"><br>
+        OD AXIS <input type="text" name="od_axis"><br>
+        OD PRISM <input type="text" name="od_prism"><br>
+        OD ADD <input type="text" name="od_add"><br>
+        OD BIF TYPE <input type="text" name="od_bif_typ"><br>
+        OD SEGMENT HT <input type="text" name="od_seg_ht"><br>
+        
+        OS SPHERE <input type="text" name="os_sphere"><br>
+        OS CYLINDER <input type="text" name="os_cylinder"><br>
+        OS AXIS <input type="text" name="os_axis"><br>
+        OS PRISM <input type="text" name="os_prism"><br>
+        OS ADD <input type="text" name="os_add"><br>
+        OS BIF TYPE <input type="text" name="os_bif_typ"><br>
+        OS SEGMENT HT <input type="text" name="os_seg_ht"><br>
+        START DATE <input type="date" name="strt_dt"><br>
+        END DATE <input type="date" name="end_dt">
+
+        {{ form.as_p }}-->
+
+        <br/>
+       <button type="submit" class="btn btn-secondary">Add Prescription</button>
+       <br>
+
+    </form>
+    
+    </div>
+
+    {% tailwind_css %}
+    {% endblock %}
