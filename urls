@@ -1,0 +1,47 @@
+from django.urls import path
+from . import views
+from sgperscription import views as sg_perscription_views
+from sgproduct import views as sg_product_views
+from sgsaleorder import views as sg_saleorder_views
+from saleorderitem import views as saleorder_item_views
+from sgoptometrist import views as sg_optometrist_views
+from sginsurance import views as sg_insurance_views
+from sgstore import views as sg_store_views
+
+urlpatterns = [
+    path('', views.home, name='sgcustomer-home'),
+    #path('login/', views.login_user, name='login_page'),
+    path('logout/', views.logout_user, name='logout-page'),
+    path('register/', views.register_user, name='register-page'),
+    path('customer/<int:pk>', views.customer_record, name='customer-record'),
+    path('add_record/', views.add_record, name='add-customer'),
+    path('update_record/<int:pk>', views.update_record, name='update-customer'),
+    path('sgperscription/', sg_perscription_views.homeprescription, name='sgperscription-home'),
+    path('perscription_record/<int:pk>', sg_perscription_views.prescription_record, name='perscription-record'),
+    path('add_prescription/', sg_perscription_views.add_prescription, name='add-prescription'),
+    path('update_prescription/<int:pk>', sg_perscription_views.update_prescription, name='update-prescription'),
+    path('sgproduct/', sg_product_views.homeproduct, name='sgproduct-home'),
+    path('product_record/<int:pk>', sg_product_views.product_record, name='product-record'),
+    path('add_product/', sg_product_views.add_product, name='add-product'),
+    path('update_product/<int:pk>', sg_product_views.update_product, name='update-product'),
+    path('sgsaleorder/', sg_saleorder_views.homesaleorder, name='saleorder-home'),
+    path('sgsaleorder_record/<int:pk>', sg_saleorder_views.saleorder_record, name='saleorder-record'),
+    path('add_saleorder/', sg_saleorder_views.add_saleorder, name='add-saleorder'),
+    path('update_saleorder/<int:pk>', sg_saleorder_views.update_saleorder, name='update-saleorder'),
+    path('sgsaleorderitem/', saleorder_item_views.homesaleorderitem, name='saleorderitem-home'),
+    path('sgsaleorderitem_record/<int:pk>', saleorder_item_views.saleorderitem_record, name='saleorderitem-record'),
+    path('add_saleorderitem/', saleorder_item_views.add_saleorderitem, name='add-saleorderitem'),
+    path('update_saleorderitem/<int:pk>', saleorder_item_views.update_saleorderitem, name='update-saleorderitem'),
+    path('sgoptometrist/', sg_optometrist_views.homeoptometrist, name='sgoptometrist-home'),
+    path('sgoptometrist_record/<int:pk>', sg_optometrist_views.optometrist_record, name='sgoptometrist-record'),
+    path('add_sgoptometrist/', sg_optometrist_views.add_optometrist, name='add-sgoptometrist'),
+    path('update_sgoptometrist/<int:pk>', sg_optometrist_views.update_optometrist, name='update-sgoptometrist'),
+    path('sginsurance/', sg_insurance_views.homeinsurance, name='sginsurance-home'),
+    path('sginsurance_record/<int:pk>', sg_insurance_views.insurance_record, name='sginsurance-record'),
+    path('add_sginsurance/', sg_insurance_views.add_insurance, name='add-sginsurance'),
+    path('update_sginsurance/<int:pk>', sg_insurance_views.update_insurance, name='update-sginsurance'),
+    path('sgstore/', sg_store_views.homestore, name='sgstore-home'),
+    path('sgstore_record/<int:pk>', sg_store_views.store_record, name='sgstore-record'),
+    path('add_sgstore/', sg_store_views.add_store, name='add-sgstore'),
+    path('update_sgstore/<int:pk>', sg_store_views.update_store, name='update-sgstore'),
+]
