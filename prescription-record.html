@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <h1>Saigon Prescription</h1>
+        <br>
+        <div class="card">
+            <!-- <div class="card-header">
+                <strong>{{ customer_record.cust_nm_first }} {{ customer_record.cust_nm_last }}</strong>
+            </div> -->
+            <div class="card-body">
+                <h4 class="card-title">Prescription Information</h4>
+                <hr>
+
+            <div class="customer-info">
+                <!--<strong><u>ID</u>:</strong> 
+                    {{ perscription_record.0 }}  <br/><br/>-->
+                
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <strong>OD Sphere:</strong> {{ perscription_record.1 }}
+                        </td>
+                        <td>
+                            <strong>OS Sphere:</strong> {{ perscription_record.2 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>OD Cylinder:</strong> {{ perscription_record.5 }}
+                        </td>
+                        <td>
+                            <strong>OS Cylinder:</strong> {{ perscription_record.6 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>OD Axis:</strong> {{ perscription_record.7 }}
+                        </td>
+                        <td>
+                            <strong>OS Axis:</strong> {{ perscription_record.8 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>OD Prism:</strong> {{ perscription_record.9 }}
+                        </td>
+                        <td>
+                            <strong>OS Prism:</strong> {{ perscription_record.10 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>OD Add:</strong> {{ perscription_record.11 }}
+                        </td>
+                        <td>
+                            <strong>OS Add:</strong> {{ perscription_record.12 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>OD BIF Type:</strong> {{ perscription_record.13 }}
+                        </td>
+                        <td>
+                            <strong>OS BIF Type:</strong> {{ perscription_record.14 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>OD SEG HT:</strong> {{ perscription_record.15 }}
+                        </td>
+                        <td>
+                            <strong>OS SEG HT:</strong> {{ perscription_record.16 }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+                
+            </div>
+            <!--<div class = "d-grid gap-2 col-6 mx-auto">-->
+            <div class="blue">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end ml-3">
+                    <div class="buttonsets">
+                        <a href="{% url 'sgperscription-home' %}" class="btn btn-secondary mb-3">Back</a>
+                        <a href="{% url 'update-prescription' perscription_record.0 %}" class="btn btn-secondary mb-3">Update</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+          <br/>
+    
+          <!--<a href="{% url 'sgperscription-home' %}" class="btn btn-secondary">Back</a>
+          <a href="{% url 'update-prescription' perscription_record.0 %}" class="btn btn-secondary">Update</a>-->
+
+    {% endblock %}
