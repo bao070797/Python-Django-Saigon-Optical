@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+    {% block content %}
+    <!--{% load static tailwind_tags %}-->
+    {% load static %}
+    <div class="card">
+        <div class="card-header">
+            <strong>Customer Information: {{ customer_record.cust_nm_first }} {{ customer_record.cust_nm_last }}</strong>
+        </div>
+        <div class="card-body">
+          <!--<h1 class="card-title" style="font-weight: bold;">Customer Information</h1>-->
+            <div class="customer-info">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <strong>Start Date:</strong> {{ customer_record.cust_strt_dt }}
+                        </td>
+                        <td>
+                            <strong>Date of Birth:</strong> {{ customer_record.cust_dob }}
+                        </td>
+                        <td>
+                            <strong>Address:</strong> {{ customer_record.cust_addr }} {{ customer_record.cust_city }} {{ customer_record.cust_prov }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Email:</strong> {{ customer_record.cust_email }}
+                        </td>
+                        <td>
+                            <strong>Telephone Number (Work):</strong> {{ customer_record.cust_tel_num_w }}
+                        </td>
+                        <td>
+                            <strong>Telephone Number (Mobile):</strong> {{ customer_record.cust_tel_num_m }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Insurance Policy:</strong> {{ customer_record.cust_insurance_policy }}
+                        </td>
+                        <td>
+                            <strong>Insurance Number:</strong> {{ customer_record.cust_insurance_nm }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Rate:</strong> {{ customer_record.cust_rt }}
+                        </td>
+                        <td>
+                            <strong>CRDR Amount:</strong> {{ customer_record.cust_cr_dr_amt }}
+                        </td>
+                        <td>
+                            <strong>Website:</strong> {{ customer_record.cust_website }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Note:</strong> {{ customer_record.note }}
+                        </td>
+                    </tr>
+                </table>
+                <a href="{% url 'update-customer' customer_record.id %}" class="btn btn-secondary mb-3 ml-3">Update</a>
+            </div>
+
+            <hr>
+        
+            <br>
+            <h1><strong><u>Perscription Info</u></strong></h1>
+            <br>
+        
+            <div style="height:150px;overflow:auto;">
+                <table class="table table-striped table-hover table-bordered" id="pinfo">
+                    <thead class="table-dark" style="position: sticky; top: 0; z-index: 1;">
+                <!--<table class="perscription-info">
+                    <thead class="perscriptioninfo-head"></thead>-->
+                        <tr>
+                        <th scope="col"></th>
+                        <th scope="col">od_sphere</th>
+                        <th scope="col">od_cylinder</th>
+                        <th scope="col">od_axis</th>
+                        <th scope="col">od_prism</th>
+                        <th scope="col">od_add</th>
+                        <th scope="col">od_bif_typ</th>
+                        <th scope="col">od_seg_ht</th>
+                        <th scope="col">os_sphere</th>
+                        <th scope="col">os_cylinder</th>
+                        <th scope="col">os_axis</th>
+                        <th scope="col">os_prism</th>
+                        <th scope="col">os_add</th>
+                        <th scope="col">os_bif_typ</th>
+                        <th scope="col">os_seg_ht</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        {% if prescriptions %}
+                            {% for record in prescriptions %}
+                            <tr>
+                                <td><a href="{% url 'perscription-record' record.id %}">View</a></td>
+                                <td>{{ record.od_sphere }}</td>
+                                <td>{{ record.od_cylinder }}</td>
+                                <td>{{ record.od_axis }}</td>
+                                <td>{{ record.od_prism }}</td>
+                                <td>{{ record.od_add }}</td>
+                                <td>{{ record.od_bif_typ }}</td>
+                                <td>{{ record.od_seg_ht }}</td>
+                                <td>{{ record.os_sphere }}</td>
+                                <td>{{ record.os_cylinder }}</td>
+                                <td>{{ record.os_axis }}</td>
+                                <td>{{ record.os_prism }}</td>
+                                <td>{{ record.os_add }}</td>
+                                <td>{{ record.os_bif_typ }}</td>
+                                <td>{{ record.os_seg_ht }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <a href="{% url 'add-prescription' %}?customerId={{ customer_record.id }}" class="btn btn-secondary mb-3 ml-3">Create Prescription</a>
+            <br>
+            <hr>
+            <br>
+            <h1><strong><u>Sale Order</u></strong></h1>
+            <br>
+
+            <div style="height:230px;overflow:auto;">
+                <table class="table table-striped table-hover table-bordered" id="pinfo">
+                    <thead class="table-dark" style="position: sticky; top: 0; z-index: 1;">
+                <!--<table class="perscription-info">
+                    <thead class="perscriptioninfo-head"></thead>-->
+                        <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Store</th>
+                        <th scope="col">Employee</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Expected Delivery Date</th>
+                        <th scope="col">Lab Tech Special Instructions</th>
+                        <th scope="col">Sub Amount</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Tax Amount</th>
+                        <th scope="col">Bill Amount</th>
+                        <th scope="col">Deposit Amount</th>
+                        <th scope="col">Total Amount</th>
+                        <th scope="col">Payment Method</th>
+                        <th scope="col">Shipment Info</th>
+                        <th scope="col">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        {% if saleOrders %}
+                            {% for saleOrder in saleOrders %}
+                            <tr>
+                                <td><a href="{% url 'saleorder-record' saleOrder.id %}">View</a></td>
+                                <td>{{ saleOrder.store }}</td>
+                                <td>{{ saleOrder.employee }}</td>
+                                <td>{{ saleOrder.date }}</td>
+                                <td>{{ saleOrder.expcted_dlvry_dt }}</td>
+                                <td>{{ saleOrder.lab_tech_spcl_instrc }}</td>
+                                <td>{{ saleOrder.sub_amt }}</td>
+                                <td>{{ saleOrder.discnt }}</td>
+                                <td>{{ saleOrder.tax_amt }}</td>
+                                <td>{{ saleOrder.bill_amt }}</td>
+                                <td>{{ saleOrder.deposit_amt }}</td>
+                                <td>{{ saleOrder.ttl_amt }}</td>
+                                <td>{{ saleOrder.payment_mthd }}</td>
+                                <td>{{ saleOrder.shpmnt_info }}</td>
+                                <td>{{ saleOrder.note }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <a href="{% url 'add-saleorder' %}?customerId={{ customer_record.id }}" class="btn btn-secondary mb-3 ml-3">Create Sale Order</a>
+
+            <hr>
+            <br>
+
+            <div>
+                <a href="{% url 'sgcustomer-home' %}" class="btn btn-secondary mb-3 ml-3">Back</a>
+            
+            </div>
+        </div>
+        
+    </div>
+
+      <br/>
+
+      <!--<a href="{% url 'sgcustomer-home' %}" class="btn btn-secondary">Back</a>
+
+      <a href="{% url 'update-customer' customer_record.id %}" class="btn btn-secondary">Update</a>-->
+      
+      {% tailwind_css %}
+    {% endblock %}
